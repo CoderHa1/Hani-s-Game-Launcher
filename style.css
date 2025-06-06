@@ -183,16 +183,17 @@ footer {
 }
 
 p {
-  position: relative;
-  margin: 8vh auto; /* Puts it somewhere in the middle-ish vertically */
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 80%;
   text-align: center;
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   color: #0b3d91;
   text-shadow: 1px 1px 0 #fff;
   pointer-events: none;
   user-select: none;
   letter-spacing: 0.1em;
 }
-
