@@ -1,6 +1,6 @@
 // Define your game codes and their game URLs
 const gameCodes = {
-  "CUBE123": "https://coderha1.github.io/Hani-s-Game-Launcher/games/cube-clicker.html",
+  "CUBER": "https://coderha1.github.io/Hani-s-Game-Launcher/games/cube-clicker.html",
   "KREKO": "https://coderha1.github.io/Hani-s-Game-Launcher/games/3D-FPS-GAME.html",
 };
 " ,  // Add more game codes and URLs here
