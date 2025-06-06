@@ -1,17 +1,15 @@
-// Define your game codes and their URLs
+// Define your game codes and their game URLs
 const gameCodes = {
-  "CUBER": "https://coderha1.github.io/Hani-s-Game-Launcher/games/cube-clicker.html",
-  "KREKO": "https://coderha1.github.io/Hani-s-Game-Launcher/games/3D-FPS-GAME.html"
+  "CUBE123": "games/cube-clicker.html",
+  "KREKOS": "games/3D-FPS-GAME.html" ,  // Add more game codes and URLs here
 };
-
-// Make sure loadGame is globally accessible
-window.loadGame = function () {
+function loadGame() {
   const codeInput = document.getElementById("codeInput");
   const message = document.getElementById("message");
   const gameFrame = document.getElementById("gameFrame");
 
   if (!codeInput || !message || !gameFrame) {
-    console.error("Required HTML elements are missing");
+    console.error("Required elements missing: codeInput, message, or gameFrame");
     return;
   }
 
@@ -20,13 +18,13 @@ window.loadGame = function () {
 
   if (gameURL) {
     message.style.color = "yellow";
-    message.innerText = "🎮 Loading game...";
+    message.innerText = "Loading game...";
     gameFrame.src = gameURL;
     gameFrame.style.display = "block";
   } else {
     message.style.color = "red";
     message.innerText = "❌ Invalid game code!";
-    gameFrame.src = "";
     gameFrame.style.display = "none";
+    gameFrame.src = "";
   }
-};
+}
