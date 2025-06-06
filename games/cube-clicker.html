@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cube Clicker</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .cube {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin: 20px auto;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.2s;
+    }
+
+    .cube:active {
+      transform: scale(0.95);
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🟥 Cube Clicker</h1>
+  <p>Click the cube to earn points!</p>
+  <div class="cube" onclick="clickCube()"></div>
+  <p>Points: <span id="score">0</span></p>
+
+  <script>
+    let score = 0;
+
+    function clickCube() {
+      score++;
+      document.getElementById("score").innerText = score;
+    }
+  </script>
+
+</body>
+</html>
