@@ -1,6 +1,6 @@
 // Define your game codes and their game URLs
 const gameCodes = {
-  "CUBE123": "games/cube-clicker.html",
+  "CUBER": "games/cube-clicker.html",
   "KREKOS": "games/3D-FPS-GAME.html" ,  // Add more game codes and URLs here
 };
 function loadGame() {
