@@ -1,7 +1,7 @@
 // Define your game codes and their game URLs
 const gameCodes = {
-  "CUBER": "games/cube-clicker.html",
-  "KREKO": "games/3D-FPS-GAME.html" ,  // Add more game codes and URLs here
+  "CUBER": "https://coderha1.github.io/Hani-s-Game-Launcher/games/cube-clicker.html",
+  "KREKO": "https://coderha1.github.io/Hani-s-Game-Launcher/games/3D-FPS-GAME.html" ,  // Add more game codes and URLs here
 };
 function loadGame() {
   const codeInput = document.getElementById("codeInput");
