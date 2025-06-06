@@ -10,18 +10,37 @@
   <!-- Favicon links -->
   <link rel="icon" href="Logo.png" type="image/png" sizes="32x32" />
   <link rel="shortcut icon" href="Logo.png" type="image/png" />
-  <!-- If you add a favicon.ico file, uncomment these lines -->
-  <!--
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  -->
+
+  <style>
+    .code-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10vh;
+      margin-bottom: 10vh;
+      text-align: center;
+      font-size: 1.1em;
+      color: #fff;
+    }
+
+    body {
+      background-color: #000; /* optional for style */
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+  </style>
 </head>
 <body>
   <h1>Hani Marji's Game Launcher</h1>
   <input id="codeInput" type="text" placeholder="Enter your game code..." />
   <button onclick="loadGame()">Play Game</button>
   <div id="message"></div>
-  <p>if you want to get games code for free go to this site: https://coderha1.github.io/LAUNCHER-CODE-BUYER</p>
+
+  <!-- Moved and styled this paragraph -->
+  <div class="code-link">
+    <p>If you want to get games code for free go to this site: <a href="https://coderha1.github.io/LAUNCHER-CODE-BUYER" target="_blank" style="color: yellow;">https://coderha1.github.io/LAUNCHER-CODE-BUYER</a></p>
+  </div>
+
   <iframe id="gameFrame" style="display:none;"></iframe>
 
   <!-- Animated cubes for background -->
