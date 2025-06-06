@@ -24,9 +24,40 @@
     }
 
     body {
-      background-color: #000; /* optional for style */
+      background-color: #000;
       color: #fff;
       font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    iframe#gameFrame {
+      width: 800px;
+      height: 450px;
+      border: 2px solid #fff;
+      margin-top: 20px;
+      display: none;
+    }
+
+    /* Fullscreen styles */
+    iframe:fullscreen,
+    iframe:-webkit-full-screen,
+    iframe:-moz-full-screen {
+      width: 100vw !important;
+      height: 100vh !important;
+      border: none !important;
+    }
+
+    button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #ccc;
     }
   </style>
 </head>
@@ -34,11 +65,12 @@
   <h1>Hani Marji's Game Launcher</h1>
   <input id="codeInput" type="text" placeholder="Enter your game code..." />
   <button onclick="loadGame()">Play Game</button>
+  <button onclick="toggleFullscreen()">Fullscreen</button>
   <div id="message"></div>
 
-  <!-- Moved and styled this paragraph -->
+  
 
-  <iframe id="gameFrame" style="display:none;"></iframe>
+  <iframe id="gameFrame" allowfullscreen></iframe>
 
   <!-- Animated cubes for background -->
   <div class="cube"></div>
@@ -47,8 +79,8 @@
   <div class="cube"></div>
   <div class="cube"></div>
 
-  <script src="launcher.js"></script>
-  <footer>Created by Hani Marji &nbsp;|&nbsp; If you want to get free game codes for this site go to this site: https://coderha1.github.io/LAUNCHER-CODE-BUYER</footer>
+  <script src="launcher.js"></script> 
+  <footer>Created by Hani Marji &nbsp;|&nbsp; if you want to get free game codes for this site go to this site: https://coderha1.github.io/LAUNCHER-CODE-BUYER</footer>
 
 </body>
 </html>
