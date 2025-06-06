@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D FPS Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="blocker">
+        <div id="instructions">
+            <p style="font-size:36px">Click to play</p>
+            <p>
+                Move: WASD<br/>
+                Look: MOUSE<br/>
+                Shoot: CLICK<br/>
+                Reload: R<br/>
+                Open Store: B
+            </p>
+        </div>
+    </div>
+
+    <div id="crosshair">+</div>
+
+    <div id="hud">
+        <div id="health-container">
+            <span>HP: </span>
+            <div id="health-bar-outer">
+                <div id="health-bar-inner"></div>
+            </div>
+            <span id="health-text">100/100</span>
+        </div>
+        <div id="ammo-container">
+            <span>Ammo: </span>
+            <span id="ammo-text">10/10</span>
+        </div>
+        <div id="coins-container">
+            <span>Coins: </span>
+            <span id="coins-text">0</span>
+        </div>
+    </div>
+
+    <div id="ability-container">
+        <div id="ability-text">READY</div>
+    </div>
+
+    <div id="store">
+        <h2>Weapon Store (Press 'B' to close)</h2>
+        <div id="gun-list">
+            <!-- Gun items will be populated by JS -->
+        </div>
+    </div>
+    
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
