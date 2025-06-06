@@ -183,7 +183,7 @@ footer {
 }
 
 p {
-  position: fixed;
+  position: center;
   bottom: 12px;
   width: 100%;
   text-align: center;
