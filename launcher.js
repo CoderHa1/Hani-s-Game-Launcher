@@ -2,7 +2,7 @@
 const gameCodes = {
   "CUBER": "https://coderha1.github.io/Hani-s-Game-Launcher/games/cube-clicker.html",
   "KREKO": "https://coderha1.github.io/Hani-s-Game-Launcher/games/3D-FPS-GAME.html",
-  "GARSGOR": "https://coderha1.github.io/Hani-s-Game-Launcher/games/watching_grass_grow_by_Hani_Marji/index.html"
+  "GARSGOR": "https://coderha1.github.io/Hani-s-Game-Launcher/games/watching_grass_grow_by_Hani_Marji/index.html",
   // Add more game codes and URLs here if needed
 };
 
