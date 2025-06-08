@@ -1,0 +1,141 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watching Grass Grow: The Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="loading-screen">
+        <div id="anti-cheat-container">
+            <h1 class="loading-title">Watching Grass Grow</h1>
+            <div id="loading-bar-container">
+                <div id="loading-bar"></div>
+            </div>
+            <div id="loading-text">Loading Anti-Cheat...</div>
+            <button id="start-button" style="display: none;">PRESS TO CONTINUE</button>
+        </div>
+        <div id="age-rating-container" style="display: none;">
+            <img src="ESRB_Mature_17+.svg.png" alt="ESRB Mature 17+" class="rating-img">
+            <img src="16.png" alt="PEGI 16" class="rating-img">
+        </div>
+        <div id="studio-logo-container" style="display: none;">
+            <img src="unnamed.jpg" alt="Baguette Studios" id="studio-logo">
+        </div>
+    </div>
+    
+    <div id="blocker" style="display: none;">
+        <h1 class="game-title">Watching Grass Grow</h1>
+        <div id="menu">
+            <p class="menu-item" id="menu-button">BEGIN</p>
+            <p class="menu-item" id="achievements-button">ACHIEVEMENTS</p>
+            <p class="menu-item" id="settings-button">SETTINGS</p>
+        </div>
+
+        <div id="character-creation-screen" style="display: none;">
+            <div id="creation-ui">
+                <h2>CREATE YOUR HERO</h2>
+                <div class="creation-row">
+                    <label for="char-name">NAME:</label>
+                    <input type="text" id="char-name" name="char-name" value="Grass Watcher" maxlength="20">
+                </div>
+                <div class="creation-columns">
+                    <div class="creation-column">
+                        <h3>RACE</h3>
+                        <div class="selection-box" id="race-selection">
+                            <span class="arrow left-arrow" data-selection="race">&lt;</span>
+                            <span class="selection-value" id="race-value">HUMAN</span>
+                            <span class="arrow right-arrow" data-selection="race">&gt;</span>
+                        </div>
+                    </div>
+                    <div class="creation-column">
+                        <h3>SPECIAL SKILL</h3>
+                        <div class="selection-box" id="skill-selection">
+                            <span class="arrow left-arrow" data-selection="skill">&lt;</span>
+                            <span class="selection-value" id="skill-value">DRAGON'S BREATH</span>
+                            <span class="arrow right-arrow" data-selection="skill">&gt;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creation-buttons">
+                    <p class="menu-item" id="start-game-button">EMBARK</p>
+                    <p class="menu-item" id="creation-back-button">BACK</p>
+                </div>
+            </div>
+            <div id="character-preview-container">
+                <!-- 3D Preview will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="achievements-screen" style="display: none;">
+        <h2>ACHIEVEMENTS</h2>
+        <div id="achievements-list">
+            <!-- Dynamically populated -->
+        </div>
+        <p class="menu-item" id="achievements-back-button">BACK</p>
+    </div>
+
+    <div id="settings-menu" style="display: none;">
+        <h2>SETTINGS</h2>
+        <div id="settings-list-container">
+            <!-- Dynamically populated -->
+        </div>
+        <div class="setting">
+            <span>VOLUME</span>
+            <div class="setting-control">
+                <input type="range" min="0" max="100" value="40" class="slider">
+            </div>
+        </div>
+        <p class="menu-item" id="back-button">BACK</p>
+    </div>
+
+    <div id="pause-menu" style="display: none;">
+        <h2>PAUSED</h2>
+        <p class="pause-menu-item" id="resume-button">RESUME</p>
+        <p class="pause-menu-item" id="quit-button">QUIT TO MAIN MENU</p>
+    </div>
+
+    <div id="ui">
+        <div id="timer">00:00:00 / 06:00:00</div>
+        <div id="useless-stats">
+            <div class="stat-item">
+                <span class="stat-label">Grass Coins</span>
+                <img src="/grass_coin.png" class="coin-icon" alt="GC">
+                <span id="grass-coins-value" class="stat-value">0</span>
+            </div>
+            <div id="player-vitals">
+                <div class="vital-bar-container">
+                    <div class="vital-bar-fill" id="health-bar-fill"></div>
+                    <span class="vital-bar-text" id="health-text">100 / 100</span>
+                </div>
+                <div class="vital-bar-container">
+                    <div class="vital-bar-fill" id="mana-bar-fill"></div>
+                    <span class="vital-bar-text" id="mana-text">100 / 100</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="win-message" style="display: none;">
+        <h1>Congratulations!</h1>
+        <p>You've watched grass grow for 6 hours.</p>
+        <p>You are a true master of patience.</p>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
