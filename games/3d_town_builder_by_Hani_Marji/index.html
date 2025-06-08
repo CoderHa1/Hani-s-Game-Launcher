@@ -1,0 +1,127 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedural Town Builder</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+            "simplex-noise": "https://cdn.jsdelivr.net/npm/simplex-noise@4.0.1/dist/esm/simplex-noise.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <h1>Procedural Town Builder</h1>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <p id="loading-text">Generating your world...</p>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <div id="scene-container"></div>
+        
+        <div id="ui-container">
+            <div id="top-bar">
+                <div class="resource">
+                    <span class="icon">👥</span>
+                    <span id="population">0</span>
+                </div>
+                <div class="resource">
+                    <span class="icon">💰</span>
+                    <span id="money">50000</span>
+                </div>
+                <div class="resource">
+                    <span class="icon">😊</span>
+                    <span id="happiness">100%</span>
+                </div>
+                <div id="time-display">
+                    <span id="day-counter">Day 1</span>
+                    <span id="weekday-display">Monday</span>
+                    <span id="time-of-day">Morning</span>
+                    <span id="time-string">00:00</span>
+                    <span id="weather-display">Clear</span>
+                </div>
+            </div>
+            
+            <div id="build-menu">
+                <div class="build-header">
+                    <h3>Buildings</h3>
+                    <button id="toggle-build-panel">▼</button>
+                </div>
+                <div id="build-panel-content">
+                    <div class="build-category">
+                        <button class="build-btn" data-type="residential">🏠 Residential</button>
+                        <button class="build-btn" data-type="commercial">🏪 Commercial</button>
+                        <button class="build-btn" data-type="industrial">🏭 Industrial</button>
+                        <button class="build-btn" data-type="civic">🏛️ Civic</button>
+                        <button class="build-btn" data-type="transportation">🚌 Transport</button>
+                        <button class="build-btn" data-type="religious">🙏 Religious</button>
+                        <button class="build-btn" data-type="recreational">🎮 Recreation</button>
+                        <button class="build-btn" data-type="farm">🚜 Farm</button>
+                        <button class="build-btn" data-type="road">🛣️ Road</button>
+                        <button class="build-btn" id="move-building-btn">🔄 Move</button>
+                    </div>
+                    <div id="building-options"></div>
+                    <div id="stats-panel" class="stats-section"></div>
+                </div>
+            </div>
+            
+            <div id="info-panel">
+                <h3>Town Information <button id="toggle-info-panel">▼</button></h3>
+                <div id="info-content">
+                    <p>Select a building or area to see details.</p>
+                </div>
+            </div>
+            
+            <div id="controls-panel">
+                <button id="toggle-menu-btn">Settings</button>
+                <button id="speed-btn">Speed: Normal</button>
+                <button id="toggle-music-btn">🔊</button>
+                <button id="fullscreen-btn">📺</button>
+                <button id="sandbox-mode-btn" title="Sandbox Mode: Off">🧩</button>
+            </div>
+        </div>
+        
+        <div id="game-menu" class="hidden">
+            <h2>Town Builder</h2>
+            <button id="resume-btn">Resume Game</button>
+            <button id="new-town-btn">New Town</button>
+            <button id="settings-btn">Settings</button>
+            <button id="help-btn">Help</button>
+        </div>
+        
+        <div id="settings-panel" class="hidden">
+            <h2>Settings</h2>
+            <div class="setting-option">
+                <label for="graphics-quality">Graphics Quality:</label>
+                <select id="graphics-quality">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="setting-option">
+                <label for="sound-volume">Sound Volume:</label>
+                <input type="range" id="sound-volume" min="0" max="100" value="50">
+            </div>
+            <button id="close-settings-btn">Close</button>
+        </div>
+        
+        <div id="event-notification" class="hidden">
+            <h3 id="event-title">Event Title</h3>
+            <p id="event-description">Event description goes here.</p>
+            <div id="event-options"></div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

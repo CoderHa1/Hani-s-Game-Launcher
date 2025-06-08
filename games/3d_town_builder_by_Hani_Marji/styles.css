@@ -1,0 +1,522 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #263238;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.loading-content {
+    text-align: center;
+    max-width: 80%;
+}
+
+.loading-content h1 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.progress-container {
+    width: 100%;
+    height: 20px;
+    background-color: #455a64;
+    border-radius: 10px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #4caf50;
+    transition: width 0.3s ease;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#scene-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #87ceeb;
+}
+
+#ui-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+}
+
+#ui-container > div {
+    pointer-events: auto;
+}
+
+#top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(38, 50, 56, 0.8);
+    color: white;
+    padding: 10px;
+    z-index: 100;
+}
+
+.resource {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon {
+    font-size: 1.2rem;
+}
+
+#build-menu {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    width: 250px;
+    background-color: rgba(38, 50, 56, 0.8);
+    border-radius: 8px;
+    color: white;
+    padding: 15px;
+    z-index: 100;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.build-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.build-header h3 {
+    font-size: 0.95rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+#toggle-build-panel {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.collapsed #build-panel-content {
+    display: none;
+}
+
+.build-category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+}
+
+.build-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex: 1 0 calc(25% - 10px);
+    white-space: nowrap;
+    font-size: 0.8rem;
+}
+
+.build-btn:hover {
+    background-color: #388e3c;
+}
+
+.build-btn.selected {
+    background-color: #ff9800;
+}
+
+#building-options {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.building-option {
+    background-color: #546e7a;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(50% - 5px);
+    font-size: 0.85rem;
+}
+
+.building-option.selected {
+    background-color: #ff9800;
+    box-shadow: 0 0 8px rgba(255, 152, 0, 0.7);
+    transform: scale(1.05);
+}
+
+.building-option.cant-afford {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background-color: #455a64;
+}
+
+.building-option:hover:not(.cant-afford) {
+    background-color: #455a64;
+}
+
+.building-option img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+#info-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 250px;
+    background-color: rgba(38, 50, 56, 0.8);
+    border-radius: 8px;
+    color: white;
+    padding: 15px;
+    z-index: 100;
+    font-size: 0.9rem;
+}
+
+#info-panel h3 {
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#info-panel h4 {
+    font-size: 0.95rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+#info-panel p {
+    font-size: 0.85rem;
+    margin: 5px 0;
+}
+
+#info-panel button {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    margin-top: 8px;
+}
+
+#toggle-info-panel {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.collapsed-info-panel #info-content {
+    display: none;
+}
+
+#controls-panel {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+#controls-panel button {
+    background-color: rgba(38, 50, 56, 0.8);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#controls-panel button:hover {
+    background-color: rgba(55, 71, 79, 0.8);
+}
+
+#controls-panel button.selected {
+    background-color: #ff9800;
+    box-shadow: 0 0 8px rgba(255, 152, 0, 0.7);
+}
+
+#game-menu, #settings-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(38, 50, 56, 0.9);
+    border-radius: 8px;
+    color: white;
+    padding: 30px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 250px;
+    max-width: 280px;
+}
+
+#game-menu h2, #settings-panel h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+#game-menu button, #settings-panel button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+#game-menu button:hover, #settings-panel button:hover {
+    background-color: #388e3c;
+}
+
+.setting-option {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+}
+
+.setting-option select, .setting-option input {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #455a64;
+    width: 100%;
+}
+
+#event-notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(38, 50, 56, 0.9);
+    border-radius: 8px;
+    color: white;
+    padding: 20px;
+    z-index: 300;
+    max-width: 500px;
+    text-align: center;
+}
+
+#event-notification h3 {
+    color: #ff9800;
+    margin-bottom: 10px;
+}
+
+#event-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#event-options button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#event-options button:hover {
+    background-color: #388e3c;
+}
+
+.notification {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: rgba(38, 50, 56, 0.9);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    z-index: 1000;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-width: 300px;
+}
+
+.notification.success {
+    border-left: 4px solid #4caf50;
+}
+
+.notification.error {
+    border-left: 4px solid #f44336;
+}
+
+.notification.warning {
+    border-left: 4px solid #ff9800;
+}
+
+.notification.info {
+    border-left: 4px solid #2196f3;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#time-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#day-counter {
+    font-weight: bold;
+    color: #ff9800;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.stats-section {
+    margin-top: 20px;
+    border-top: 1px solid #555;
+    padding-top: 10px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.stat-divider {
+    height: 1px;
+    background-color: #555;
+    margin: 10px 0;
+}
+
+#sandbox-mode-btn {
+    background-color: rgba(38, 50, 56, 0.8);
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sandbox-mode-btn:hover {
+    background-color: rgba(255, 152, 0, 0.8);
+}
+
+#sandbox-mode-btn.active {
+    background-color: #ff9800;
+    box-shadow: 0 0 8px rgba(255, 152, 0, 0.7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #build-menu, #info-panel {
+        width: 200px;
+        font-size: 90%;
+    }
+    
+    #top-bar {
+        flex-wrap: wrap;
+        font-size: 90%;
+        padding: 5px;
+    }
+    
+    .build-btn {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .building-option {
+        font-size: 0.7rem;
+    }
+    
+    #controls-panel button {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+    
+    /* Optimize mobile touch targets */
+    #controls-panel {
+        gap: 5px;
+    }
+    
+    /* Make notification text smaller on mobile */
+    .notification {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        max-width: 250px;
+    }
+    
+    /* Add better touch support */
+    .build-btn, #controls-panel button, .building-option {
+        touch-action: manipulation;
+    }
+    
+    /* Reduce animations for better performance */
+    .notification, #game-menu, #settings-panel {
+        transition: all 0.2s ease;
+    }
+}
