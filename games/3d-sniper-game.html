@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Sniper Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="loading-screen">
+        <h1>Loading Assets...</h1>
+    </div>
+
+    <div id="mission-select-screen" class="hidden">
+        <h1>Select Mission</h1>
+        <div id="mission-grid"></div>
+    </div>
+
+    <div id="game-container" class="hidden">
+        <canvas id="bg"></canvas>
+        <div id="game-ui">
+            <div id="mission-title">Mission 1</div>
+            <div id="hint-box">Hint: Find the target.</div>
+            <div id="ammo-count"></div>
+        </div>
+        <div id="scope-overlay" class="hidden"></div>
+        <div id="mission-result-overlay" class="hidden">
+            <div id="mission-result-message"></div>
+            <button id="next-mission-button">Next Mission</button>
+            <button id="retry-mission-button">Retry Mission</button>
+            <button id="main-menu-button">Main Menu</button>
+        </div>
+        <div id="instructions">Click to start<br>Right-Click to Aim, Left-Click to Shoot</div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,179 +1,175 @@
-body {
+body, html {
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Courier New', Courier, monospace;
     color: white;
-    overflow: hidden; /* Prevent scrollbars */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
-canvas {
+.hidden {
+    display: none !important;
+}
+
+#loading-screen, #mission-select-screen, #mission-result-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #111;
+    z-index: 100;
+}
+
+#mission-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.mission-button {
+    width: 80px;
+    height: 80px;
+    background-color: #333;
+    border: 2px solid #555;
+    color: #888;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.mission-button.unlocked {
+    background-color: #4CAF50;
+    border-color: #8CFF91;
+    color: white;
+}
+
+.mission-button.unlocked:hover {
+    background-color: #6DFF73;
+    transform: scale(1.1);
+}
+
+.mission-button.locked {
+    cursor: not-allowed;
+    background-image: url('lock-icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+#game-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+canvas#bg {
     display: block;
 }
 
-#blocker {
+#game-ui {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#instructions {
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-}
-
-#crosshair {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    color: white;
     pointer-events: none;
-    text-shadow: 1px 1px 2px black;
+    z-index: 10;
 }
 
-#hud {
-    position: fixed;
+#mission-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#hint-box {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid white;
+    max-width: 250px;
+    font-size: 16px;
+}
+
+#ammo-count {
+    position: absolute;
     bottom: 20px;
     left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: rgba(0,0,0,0.5);
-    padding: 10px;
-    border-radius: 5px;
-    pointer-events: none;
-    min-width: 250px;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px #000;
+    letter-spacing: 2px;
 }
 
-#health-container {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-#health-bar-outer {
-    width: 150px;
-    height: 20px;
-    border: 1px solid white;
-    background-color: #333;
-}
-
-#health-bar-inner {
-    width: 100%;
-    height: 100%;
-    background-color: red;
-    transition: width 0.2s;
-}
-
-.enemy-health-bar-container {
+#scope-overlay {
     position: absolute;
-    width: 100px;
-    height: 10px;
-    border: 1px solid #fff;
-    background-color: #555;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('scope-reticle.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 20;
     pointer-events: none;
 }
 
-.enemy-health-bar {
-    width: 100%;
-    height: 100%;
-    background-color: #f00;
-    transition: width 0.1s;
-}
-
-#store {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid white;
-    border-radius: 10px;
-    padding: 20px;
+#mission-result-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 30;
     text-align: center;
-    display: none; /* Hidden by default */
 }
 
-#gun-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
+#mission-result-message {
+    font-size: 48px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
 }
 
-.gun-item {
-    background: #333;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.gun-item button {
-    padding: 5px 10px;
+#mission-result-overlay button {
+    padding: 15px 30px;
+    font-size: 20px;
+    margin: 10px;
     cursor: pointer;
-    background-color: #555;
-    color: white;
-    border: 1px solid white;
-    border-radius: 3px;
-}
-
-.gun-item button:hover {
-    background-color: #777;
-}
-
-.gun-item button:disabled {
     background-color: #444;
-    color: #888;
-    cursor: not-allowed;
+    border: 2px solid #666;
+    color: white;
+}
+
+#mission-result-overlay button:hover {
+    background-color: #555;
     border-color: #888;
 }
 
-#ability-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-    background-color: rgba(50, 50, 50, 0.8);
-    border: 2px solid #aaa;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
+#instructions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
     color: white;
-    font-family: Arial, sans-serif;
-    user-select: none;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-#ability-container.ready {
-    background-color: rgba(30, 100, 30, 0.8);
-    border-color: #4CAF50;
-}
-
-#ability-container.active {
-    background-color: rgba(200, 150, 0, 0.9);
-    border-color: #FFD700;
-    animation: pulse 1s infinite;
-}
-
-#ability-text {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    text-shadow: 2px 2px 4px #000;
+    pointer-events: none;
+    z-index: 5;
+    text-align: center;
 }
