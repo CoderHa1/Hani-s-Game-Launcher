@@ -6,8 +6,6 @@
   <title>Hani Marji's Game Launcher</title>
 
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Favicon links -->
   <link rel="icon" href="Logo.png" type="image/png" sizes="32x32" />
   <link rel="shortcut icon" href="Logo.png" type="image/png" />
 
@@ -38,7 +36,6 @@
       display: none;
     }
 
-    /* Fullscreen styles */
     iframe:fullscreen,
     iframe:-webkit-full-screen,
     iframe:-moz-full-screen {
@@ -65,14 +62,10 @@
   <h1>Hani Marji's Game Launcher</h1>
   <input id="codeInput" type="text" placeholder="Enter your game code..." />
   <button onclick="loadGame()">Play Game</button>
-  <button onclick="toggleFullscreen()">Fullscreen</button>
+  <button id="fullscreenBtn" onclick="toggleFullscreen()" style="display:none;">Fullscreen</button>
+
   <div id="message"></div>
-
-  
-
-  <iframe id="gameFrame" allowfullscreen></iframe>
-  <iframe id="gameFrame" style="display:none;" allowfullscreen></iframe>
-
+  <iframe id="gameFrame" allowfullscreen style="display:none;"></iframe>
 
   <!-- Animated cubes for background -->
   <div class="cube"></div>
@@ -83,6 +76,5 @@
 
   <script src="launcher.js"></script> 
   <footer>Created by Hani Marji &nbsp;|&nbsp; if you want to get free game codes for this site go to this site: https://coderha1.github.io/LAUNCHER-CODE-BUYER</footer>
-
 </body>
 </html>
