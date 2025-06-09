@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Minimalist 3D Multiplayer Movement</title>
+  <link rel="stylesheet" href="styles.css" />
+  
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/nipplejs@0.10.1/dist/nipplejs.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script> <!-- Socket.IO -->
+</head>
+<body>
+  <div id="game-container">
+    <div class="crosshair"></div>
+  </div>
+
+  <script type="module">
+    // Load the main game logic
+    import './app.js';
+
+    // Connect to the server
+    const socket = io();
+
+    // Prompt for room
+    const roomCode = prompt("Enter room code (leave empty to create a new one):");
+
+    if (!roomCode) {
+      const newRoom = Math.random().toString(36).substring(2, 8).toUpperCase();
+      socket.emit("createServer", newRoom);
+      console.log("Created room:", newRoom);
+    } else {
+      socket.emit("joinServer", roomCode);
+      console.log("Joining room:", roomCode);
+    }
+
+    // Handle confirmation from server
+    socket.on("joinedServer", ({ roomCode }) => {
+      console.log(`✅ Joined server room: ${roomCode}`);
+    });
+
+    socket.on("playerJoined", ({ id }) => {
+      console.log(`👤 New player joined: ${id}`);
+    });
+
+    socket.on("playerLeft", ({ id }) => {
+      console.log(`👋 Player left: ${id}`);
+    });
+
+    // Export socket for use in app.js if needed
+    window.socket = socket;
+  </script>
+</body>
+</html>
